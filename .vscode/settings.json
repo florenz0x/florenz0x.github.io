@@ -26,5 +26,7 @@
   // Run tasks in macOS
   "terminal.integrated.profiles.osx": {
     "zsh": { "path": "/bin/zsh", "args": ["-l", "-i"] }
-  }
+  },
+  "snyk.advanced.organization": "8e4503ad-6964-44b7-ad07-6a2e6ad91973",
+  "snyk.advanced.autoSelectOrganization": true
 }

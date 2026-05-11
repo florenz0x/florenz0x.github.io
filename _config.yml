@@ -16,7 +16,7 @@ timezone:
 
 title: Florence # the main title
 
-tagline: Learn Somthing New # it will display as the subtitle
+tagline: Learn Something New # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -99,7 +99,7 @@ theme_mode: dark
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: /assets/img/logo.jpg
+avatar: /assets/img/logoc.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.

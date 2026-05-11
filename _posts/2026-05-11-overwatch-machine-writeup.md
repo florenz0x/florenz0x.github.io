@@ -1,9 +1,9 @@
 ---
 title: Overwatch Machine Writeup
 date: 2026-05-11 10:00:00 +0000
-categories: [HackTheBox, Linux]
-tags: [htb, ctf, privilege-escalation]
-image: /assets/img/posts/overwatch/banner.png
+categories: [HackTheBox, Windows]
+tags: [htb, ctf, AD]
+image: /assets/img/overwatch/banner.png
 description: Full walkthrough of the Overwatch HTB machine.
 ---
 OverWatch 

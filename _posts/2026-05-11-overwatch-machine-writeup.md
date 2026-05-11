@@ -1,6 +1,6 @@
 ---
 title: Overwatch Machine Writeup
-date: 2026-05-11 10:00:00 +0000
+date: 2026-05-11 
 categories: [HackTheBox, Windows]
 tags: [htb, ctf, AD]
 image: /assets/img/overwatch/banner.png
@@ -328,7 +328,7 @@ Data: For more information, check Evil-WinRM GitHub: https://github.com/Hackplay
 
 Info: Establishing connection to remote endpoint
 *Evil-WinRM* PS C:\Users\sqlmgmt\Documents> type ../Desktop/user.txt
-9e4c385671ef821505a34e3c1331a331
+9e4c385671ef8215**********
 ```
 
 ---
@@ -611,7 +611,7 @@ Listening on 0.0.0.0 4444
 Connection received on 10.129.244.81 61125
 
 PS C:\Software\Monitoring> type ../../Users/Administrator/Desktop/root.txt
-f1ee70c60d50a89ce62e44676ea9f424
+f1ee70c60d50a89ce62e**********
 ```
 
 ---

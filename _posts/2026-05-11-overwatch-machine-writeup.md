@@ -508,7 +508,7 @@ orca:overwatch/ $ cat overwatch.exe.config                                      
 
 Run Ligolo-ng #ligolo-ng
 
-- Download Ligolo agent and proxy [ligolo](``` wget https://github.com/nicocha30/ligolo-ng/releases/latest/download/ligolo-ng_proxy_linux_amd64.tar.gz ```)
+- Download Ligolo agent and proxy 
 - Transfer agent file using wget or any tranfer method in windows
 - run python server and transfer
 ```bash

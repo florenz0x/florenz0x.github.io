@@ -19,7 +19,7 @@ Windows medium Machine
 
 Initial Nmap scan
 
-```Bash
+```
 nmap -sCV 10.129.244.81 -Pn                                                                                                                       [17:53:54]
 Starting Nmap 7.95 ( https://nmap.org ) at 2026-05-07 17:55 IST
 Nmap scan report for 10.129.244.81
@@ -104,7 +104,7 @@ SMB         10.129.244.81   445    S200401          SYSVOL                      
 
 After listed the smb shares, only one is not  a common share so spider the <span style="color:rgb(0, 176, 240)">software$</span> share with pattern
 
-```Bash
+```
 nxc smb 10.129.244.81 -u 'guest' -p '' --spider software$ --pattern .                                                           [18:13:01]
 SMB         10.129.244.81   445    S200401          [*] Windows Server 2022 Build 20348 x64 (name:S200401) (domain:overwatch.htb) (signing:True) (SMBv1:None) (Null Auth:True)
 SMB         10.129.244.81   445    S200401          [+] overwatch.htb\guest:
@@ -140,7 +140,7 @@ Inside the share <span style="color:rgb(0, 255, 0)">overwatch.exe</span> and <sp
 >[!what i did wrong]
 >In this section i have downloaded exe only ,i missed config file which is helped in Privilege escalation
 
-```Bash
+```
 nxc smb 10.129.244.81 -u 'guest' -p '' --share software$ --get-file 'Monitoring/overwatch.exe' ~/hackthebox/overwatch/overwatch.exe
 SMB         10.129.244.81   445    S200401          [*] Windows Server 2022 Build 20348 x64 (name:S200401) (domain:overwatch.htb) (signing:True) (SMBv1:None) (Null Auth:True)
 SMB         10.129.244.81   445    S200401          [+] overwatch.htb\guest:
@@ -225,6 +225,7 @@ SQL (OVERWATCH\sqlsvc  dbo@overwatch)>
 
 No Interesting data inside the mssql Tables, so i enumerate with options 
 
+
 ```Bash
 SQL (OVERWATCH\sqlsvc  dbo@overwatch)> enum_impersonate
 execute as   database   permission_name   state_desc   grantee   grantor
@@ -250,7 +251,9 @@ Linked Server   Local Login   Is Self Mapping   Remote Login
 -------------   -----------   ---------------   ------------
 ```
 
+
 Here i stucked After sometimes with help of @4ntsec i found links server concept and found one linked server. but that is  not reachable.
+
 
 ```Bash
 SQL (OVERWATCH\sqlsvc  guest@master)> SELECT * FROM OPENQUERY(SQL07, 'SELECT name FROM master..sysdatabases');

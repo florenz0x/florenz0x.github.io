@@ -2,7 +2,7 @@
 title: Overwatch Machine Writeup
 date: 2026-05-11 
 categories: [HackTheBox, Windows]
-tags: [htb, ctf, AD]
+tags: [HTB, AD]
 image: /assets/img/overwatch/banner.png
 description: Full walkthrough of the Overwatch HTB machine.
 ---

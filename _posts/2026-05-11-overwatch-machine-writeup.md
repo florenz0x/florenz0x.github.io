@@ -15,7 +15,7 @@ Windows medium Machine
 >- When i see the exe, I just download it, but i  missed the config files.
 >- While decompile the .exe files. Once i found password forgot to read code
 >- Use always use debug mode in tools
-{: .prompt-warning }
+{: .prompt-tip }
 
 
 

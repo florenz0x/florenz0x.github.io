@@ -1,12 +1,3 @@
----
-title: Orion Machine Writeup
-date: 2026-07-20
-categories: [HackTheBox, Linux]
-tags: [Linux, HTB]
-image: /assets/img/orion/banner.img.png
-description: Full walkthrough of the Orion HTB machine.
----
-
 Machine : Linux
 Easy
 
@@ -52,7 +43,7 @@ Nmap done: 1 IP address (1 host up) scanned in 18.47 seconds
 
 10.129.76.198 redirect to orion.htb , Add to hosts file "echo "10.129.76.198 orion.htb" | sudo tee -a /etc/hosts" 
 
-![Enumeration Screenshot](/assets/img/orion/orion1.png)
+![[orion1.png]]
 
 The web application doesn't have any intersting endpoint ,so i did directory fuzzing and i got /admin.Also that is redirecting to login page
 
@@ -84,7 +75,7 @@ assets                  [Status: 301, Size: 178, Words: 6, Lines: 8, Duration: 2
 ```
 
 
-![CraftCMS Login](/assets/img/orion/orion2.png)
+![[orion2.png]]
 
 Found craftCMS admin login page with craftcms version 5.6.16.
 
@@ -92,7 +83,7 @@ I searched the Vuln for craftCMS 5.6.16  and found the blog which is explain iss
 
 Blog -[CVE -2025-32432](https://www.opswat.com/blog/cve-2025-32432-unauthenticated-remote-code-execution-in-craft-cms)
 
-![CVE Screenshot](/assets/img/orion/orion3.png)
+![[orion3.png]]
 
 Also the exploit available in msfconsole 
 
